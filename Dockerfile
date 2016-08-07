@@ -3,11 +3,11 @@ FROM debian:jessie
 # Add Debian contrib and use ftp.uio.no
 # FIXME: not for people outside Norway
 RUN { \ 
-		echo deb http://ftp.uio.no/debian jessie main; \
-		echo deb http://ftp.uio.no/debian jessie-updates main; \ 
-		echo deb http://security.debian.org jessie/updates main; \
+        echo deb http://ftp.uio.no/debian jessie main; \
+        echo deb http://ftp.uio.no/debian jessie-updates main; \ 
+        echo deb http://security.debian.org jessie/updates main; \
         echo deb http://ftp.debian.org/debian jessie-backports main; \
-	} > /etc/apt/sources.list
+    } > /etc/apt/sources.list
 
 # update package cache
 RUN apt-get update
@@ -36,28 +36,28 @@ RUN rm -rf /var/lib/apt/lists/*
 # set recommended PHP.ini settings
 # see https://secure.php.net/manual/en/opcache.installation.php
 RUN { \
-		echo 'opcache.memory_consumption=128'; \
-		echo 'opcache.interned_strings_buffer=8'; \
-		echo 'opcache.max_accelerated_files=4000'; \
-		echo 'opcache.revalidate_freq=60'; \
-		echo 'opcache.fast_shutdown=1'; \
-		echo 'opcache.enable_cli=1'; \
-	} > /etc/php5/apache2/conf.d/opcache-recommended.ini
+        echo 'opcache.memory_consumption=128'; \
+        echo 'opcache.interned_strings_buffer=8'; \
+        echo 'opcache.max_accelerated_files=4000'; \
+        echo 'opcache.revalidate_freq=60'; \
+        echo 'opcache.fast_shutdown=1'; \
+        echo 'opcache.enable_cli=1'; \
+    } > /etc/php5/apache2/conf.d/opcache-recommended.ini
 
 # Nextcloud apache config
 RUN { \
-	echo 'Alias / "/var/www/nextcloud/"'; \
+    echo 'Alias / "/var/www/nextcloud/"'; \
     echo 'ServerName localhost'; \
-	echo '<Directory /var/www/nextcloud/>'; \
-	echo '  Options +FollowSymlinks'; \
-	echo '  AllowOverride All'; \
-	echo ' <IfModule mod_dav.c>'; \
-	echo '  Dav off'; \
-	echo ' </IfModule>'; \
-	echo ' SetEnv HOME /var/www/nextcloud'; \
-	echo ' SetEnv HTTP_HOME /var/www/nextcloud'; \
-	echo '</Directory>'; \
-	} > /etc/apache2/sites-available/nextcloud.conf
+    echo '<Directory /var/www/nextcloud/>'; \
+    echo '  Options +FollowSymlinks'; \
+    echo '  AllowOverride All'; \
+    echo ' <IfModule mod_dav.c>'; \
+    echo '  Dav off'; \
+    echo ' </IfModule>'; \
+    echo ' SetEnv HOME /var/www/nextcloud'; \
+    echo ' SetEnv HTTP_HOME /var/www/nextcloud'; \
+    echo '</Directory>'; \
+    } > /etc/apache2/sites-available/nextcloud.conf
 
 RUN a2dissite 000-default
 RUN a2ensite nextcloud
@@ -82,16 +82,16 @@ VOLUME /var/www/html
 
 # Download and verify Nextcloud, as in https://github.com/docker-library/owncloud/blob/master/9.0/apache/Dockerfile
 RUN wget -O nextcloud.tar.bz2 \
-		"https://download.nextcloud.com/server/releases/nextcloud-${NEXTCLOUD_VERSION}.tar.bz2" \
-	&& wget -O nextcloud.tar.bz2.asc \
-		"https://download.nextcloud.com/server/releases/nextcloud-${NEXTCLOUD_VERSION}.tar.bz2.asc" \
-	&& export GNUPGHOME="$(mktemp -d)" \
+        "https://download.nextcloud.com/server/releases/nextcloud-${NEXTCLOUD_VERSION}.tar.bz2" \
+    && wget -O nextcloud.tar.bz2.asc \
+        "https://download.nextcloud.com/server/releases/nextcloud-${NEXTCLOUD_VERSION}.tar.bz2.asc" \
+    && export GNUPGHOME="$(mktemp -d)" \
 # gpg key from https://nextcloud.com/nextcloud.asc
-	&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 28806A878AE423A28372792ED75899B9A724937A \
-	&& gpg --batch --verify nextcloud.tar.bz2.asc nextcloud.tar.bz2 \
-	&& rm -r "$GNUPGHOME" nextcloud.tar.bz2.asc \
-	&& tar -xjf nextcloud.tar.bz2 -C /usr/src/ \
-	&& rm nextcloud.tar.bz2
+    && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 28806A878AE423A28372792ED75899B9A724937A \
+    && gpg --batch --verify nextcloud.tar.bz2.asc nextcloud.tar.bz2 \
+    && rm -r "$GNUPGHOME" nextcloud.tar.bz2.asc \
+    && tar -xjf nextcloud.tar.bz2 -C /usr/src/ \
+    && rm nextcloud.tar.bz2
 
 # Add entrypoint 
 COPY docker-entrypoint.sh /
