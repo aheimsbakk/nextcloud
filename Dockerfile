@@ -46,17 +46,17 @@ RUN { \
 
 # Nextcloud apache config
 RUN { \
-    echo 'Alias / "/var/www/nextcloud/"'; \
-    echo 'ServerName localhost'; \
-    echo '<Directory /var/www/nextcloud/>'; \
-    echo '  Options +FollowSymlinks'; \
-    echo '  AllowOverride All'; \
-    echo ' <IfModule mod_dav.c>'; \
-    echo '  Dav off'; \
-    echo ' </IfModule>'; \
-    echo ' SetEnv HOME /var/www/nextcloud'; \
-    echo ' SetEnv HTTP_HOME /var/www/nextcloud'; \
-    echo '</Directory>'; \
+        echo 'Alias / "/var/www/nextcloud/"'; \
+        echo 'ServerName localhost'; \
+        echo '<Directory /var/www/nextcloud/>'; \
+        echo '  Options +FollowSymlinks'; \
+        echo '  AllowOverride All'; \
+        echo ' <IfModule mod_dav.c>'; \
+        echo '  Dav off'; \
+        echo ' </IfModule>'; \
+        echo ' SetEnv HOME /var/www/nextcloud'; \
+        echo ' SetEnv HTTP_HOME /var/www/nextcloud'; \
+        echo '</Directory>'; \
     } > /etc/apache2/sites-available/nextcloud.conf
 
 RUN a2dissite 000-default

@@ -7,8 +7,8 @@ CONF_FILE="$NC_DIR/config/config.php"
 mkdir -p /var/www/nextcloud
 
 if [ ! -e "$MC_DIR/version.php" ]; then
-	cp -r /usr/src/nextcloud /var/www 
-	chown -R www-data $NC_DIR
+    cp -r /usr/src/nextcloud /var/www 
+    chown -R www-data $NC_DIR
 fi
 
 # Add Redis if config file isn't created
