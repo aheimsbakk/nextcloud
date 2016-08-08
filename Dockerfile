@@ -13,7 +13,7 @@ RUN { \
 RUN apt-get update
 
 # Reccomended packages from https://docs.nextcloud.com/server/9/admin_manual/installation/source_installation.html
-RUN apt-get install -y wget bzip2 apache2 libapache2-mod-php5 php5-gd php5-json php5-mysql php5-curl php5-intl php5-mcrypt php5-imagick 
+RUN apt-get install -y wget bzip2 apache2 libapache2-mod-php5 php5-gd php5-json php5-mysql php5-curl php5-intl php5-mcrypt php5-imagick smbclient
 
 # Install database drivers
 RUN apt-get install -y php5-sqlite php5-mysql php5-pgsql

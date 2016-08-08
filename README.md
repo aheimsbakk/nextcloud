@@ -26,6 +26,9 @@ This Docker is installed as described in Nextclouds [source installation][] guid
 
 	Nextcloud lives under `/var/www/nextcloud`.
 
+- No small size docker
+
+    This docker isn't optimized for size, but for functionality.
 
 ## :-| Environment variables
 
