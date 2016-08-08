@@ -49,7 +49,7 @@ This Docker is installed as described in Nextclouds [source installation][] guid
 
 	Set to `https` if you're using a HTTPS proxy. See Nextcloud [reverse proxy configuration](https://docs.nextcloud.com/server/9/admin_manual/configuration_server/reverse_proxy_configuration.html) for more information.
 
-## 🙂 Example
+## ☺ Example
 
 Example to start Nextcloud with
 
