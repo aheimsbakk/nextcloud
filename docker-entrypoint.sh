@@ -15,13 +15,13 @@ then
     cat <<EOF > $CONF_FILE
 <?php 
 \$CONFIG = array ( 
+    'memcache.local' => '\OC\Memcache\APCu',
 EOF
 
     # Add Redis if config file isn't created
     if [ "$REDIS_ENABLED" != "" ]
     then
         cat <<EOF >> $CONF_FILE
-    'memcache.local' => '\OC\Memcache\Redis',
     'memcache.locking' => '\OC\Memcache\Redis',
     'redis' => array(
         'host' => '$REDIS_SERVER',

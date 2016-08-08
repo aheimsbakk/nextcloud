@@ -42,7 +42,9 @@ RUN { \
         echo 'opcache.revalidate_freq=60'; \
         echo 'opcache.fast_shutdown=1'; \
         echo 'opcache.enable_cli=1'; \
-    } > /etc/php5/apache2/conf.d/opcache-recommended.ini
+    } > /etc/php5/mods-available/opcache-recommended.ini
+
+RUN php5enmod opcache-recommended
 
 # Nextcloud apache config
 RUN { \

@@ -9,7 +9,9 @@
 
 From [Wikipedia on OwnCloud][wiki_owncloud]: *April 2016 Karlitschek and many of the top contributors left [OwnCloud][] Inc. Five weeks later they started [Nextcloud][], a fork of OwnCloud.*
 
-This is a drop in replacement for the Owncloud docker. Based on Debian Jessie with [LibreOffice][] installed to be able to use the [document plugin][]. You can also enable configuration for [Redis][] with environment variables.
+This is a drop in replacement for the Owncloud docker. Based on Debian Jessie with [LibreOffice][] installed to be able to use the [document plugin][]. You can also enable locking with [Redis][] using environment variables.
+
+Memcache with ACPu is enabled by default as showed in Nextcloud [configuring memory caching](https://docs.nextcloud.com/server/9/admin_manual/configuration_server/caching_configuration.html).
 
 This Docker is installed as described in Nextclouds [source installation][] guide.
 
