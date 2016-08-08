@@ -62,15 +62,57 @@ Example to start Nextcloud with
 - External storage for config, data
 - HTTPS proxy 
 
-### 1. Redis
+**:-o Example caviats**
 
-	docker run -d --name redis redis
+- All password is example password, use your own strong passwords.
 
-### 2. MariaDB
+- All volumes are stored in `/tmp/volumes`, use permanent storage folders.
+
+### 1. [Redis](https://hub.docker.com/_/redis/)
+
+Naming this docker `redis` we can use the default `REDIS_SERVER` name in the Nextcloud docker.
+
+	docker run -d \
+		--name redis \
+		redis
+
+### 2. [MariaDB](https://hub.docker.com/_/mariadb/)
+
+Prepare MariaDB database dir with correct ownership.
+
+	mkdir -p /tmp/nc_db
+	chown 999.999 /tmp/nc_db
+
+Start MariaDB with random passwords generated with [`apg`](http://linux.die.net/man/1/apg).
+
+	docker run -d \
+		-e MYSQL_ROOT_PASSWORD=ghoshfiart \
+		-e MYSQL_DATABASE=nextcloud \
+		-e MYSQL_USER=nextcloud \
+		-e MYSQL_PASSWORD=EtlenubZee \
+		-v /tmp/nc_db:/var/lib/mysql \
+		--name=mariadb \
+		mariadb
+
+**:-? MariaDB not starting**
+
+- Running Fedora/CentOS/RedHat for testing, disable SELinux temporary.
+
+	`setenforce 0`
 
 ### 3. Nexcloud
 
-	docker run -d -p 80:80 -e REDIS_ENABLED=true --link redis:redis --name nc aheimsbakk/nextcloud:9
+Start Nextcloud linked to both Redis and MariaDB with separate `data` and `config` directory.
+
+	docker run -d \
+		-p 80:80 \
+		-e REDIS_ENABLED=true \
+		-v /tmp/nc_data:/var/www/nextcloud/data \
+        -  /tmp/nc_config:/var/www/nextcloud/config \
+		--link redis:redis \
+		--link mariadb:mariadb \
+		--name nc \
+		aheimsbakk/nextcloud:9
 
 ### 4. HTTPS proxy
 
