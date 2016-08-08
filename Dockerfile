@@ -74,6 +74,12 @@ ENV REDIS_ENABLED ""
 ENV REDIS_SERVER redis
 ENV REDIS_PORT 6379
 
+# Trusted domains
+ENV TRUSTED_DOMAINS ""
+
+# Change owerwrite protocol to https if you use HTTPS proxy
+ENV OVERWRITEPROTOCOL ""
+
 # Define Nexcloud version
 ENV NEXTCLOUD_VERSION 9.0.53
 
