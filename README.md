@@ -39,8 +39,6 @@ This Docker is installed as described in Nextclouds [source installation][] guid
 
 	Redis server port. Defaults to Redis default port.
 
-**FIXME: Not implemented**
-
 - `TRUSTED_DOMAINS`=
 
 	Set a trusted domains on first run. Use a comma separated list for more domains. See Nexcloud [trusted domain](https://docs.nextcloud.com/server/9/admin_manual/installation/installation_wizard.html#trusted-domains-label) for more information.
