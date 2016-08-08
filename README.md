@@ -65,7 +65,6 @@ Example to start Nextcloud with
 **:-o Example caviats**
 
 - All password is example password, use your own strong passwords.
-
 - All volumes are stored in `/tmp/volumes`, use permanent storage folders.
 
 ### 1. [Redis](https://hub.docker.com/_/redis/)
