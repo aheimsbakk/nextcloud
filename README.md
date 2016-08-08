@@ -14,7 +14,7 @@ This is a drop in replacement for the Owncloud docker. Based on Debian Jessie wi
 This Docker is installed as described in Nextclouds [source installation][] guide.
 
 
-## 😮 Caviats
+## :-o Caviats
 
 - No HTTPS support
 
@@ -25,7 +25,7 @@ This Docker is installed as described in Nextclouds [source installation][] guid
 	Nextcloud lives under `/var/www/nextcloud`.
 
 
-## 😶 Environment variables
+## :-| Environment variables
 
 - `REDIS_ENABLED`=
 
@@ -49,7 +49,7 @@ This Docker is installed as described in Nextclouds [source installation][] guid
 
 	Set to `https` if you're using a HTTPS proxy. See Nextcloud [reverse proxy configuration](https://docs.nextcloud.com/server/9/admin_manual/configuration_server/reverse_proxy_configuration.html) for more information.
 
-## 🙂 Example
+## :-) Example
 
 Example to start Nextcloud with
 
