@@ -22,13 +22,17 @@ This Docker is installed as described in Nextclouds [source installation][] guid
 
 	To get a secure Nextcloud, use a HTTPS proxy.
 
-- No `/var/www/html`
+- Not under `/var/www/html`
 
 	Nextcloud lives under `/var/www/nextcloud`.
 
 - No small size docker
 
     This docker isn't optimized for size, but for functionality.
+
+- Redis and memcache only configured on clean install
+
+	This docker does not modify `config/config.php` for existing installations. The same apply when upgrading this docker to a newer version.
 
 ## :-| Environment variables
 
