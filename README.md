@@ -2,7 +2,6 @@
 # Supported tags and respective `Dockerfile` links
 
 - `9`, `9.0`, `9.0.53` ([Dockerfile](https://github.com/aheimsbakk/nextcloud/blob/master/Dockerfile))
-- `latest` ([Dockerfile](https://github.com/aheimsbakk/nextcloud/blob/master/Dockerfile))
 
 
 # Nextcloud 
@@ -105,10 +104,9 @@ Start MariaDB with random passwords generated with [`apg`](http://linux.die.net/
 
 ### 3. Nexcloud
 
-Start Nextcloud linked to both Redis and MariaDB with separate `data` and `config` directory.
+Start Nextcloud linked to both Redis and MariaDB with separate `data` and `config` directory. Notice that port 80 is not mapped to local machine. It's done by the proxy.
 
 	docker run -d \
-		-p 80:80 \
 		-e REDIS_ENABLED=true \
 		-v /tmp/nc_data:/var/www/nextcloud/data \
         -  /tmp/nc_config:/var/www/nextcloud/config \
@@ -119,6 +117,23 @@ Start Nextcloud linked to both Redis and MariaDB with separate `data` and `confi
 
 ### 4. HTTPS proxy
 
+Start the ssl-proxy. This example uses my ssl-proxy, but use your favourite. If you go for this one, see [aheimsbakk/ssl-proxy](https://hub.docker.com/r/aheimsbakk/ssl-proxy/) for how to add your own certificate.
+
+	docker run -d \
+		-p 80:80 \
+		-p 443:443 \
+		--link nc:http \
+		--name proxy \
+		aheimsbakk/ssl-proxy:3.2
+
+
+### 5. Start browser
+
+Go to `http://localhost`, accept the self signed certificate. And configure Nextcloud.
+
+Remember to choose MariaDB when configuring the admin user.
+
+Enjoy.
 
 [document plugin]: https://apps.owncloud.com/content/show.php/Documents?content=168711
 [LibreOffice]: https://www.libreoffice.org
