@@ -110,7 +110,7 @@ Start Nextcloud linked to both Redis and MariaDB with separate `data` and `confi
 		-e REDIS_ENABLED=true \
 		-e OVERWRITEPROTOCOL=https \
 		-v /tmp/nc_data:/var/www/nextcloud/data \
-        -  /tmp/nc_config:/var/www/nextcloud/config \
+        -v /tmp/nc_config:/var/www/nextcloud/config \
 		--link redis:redis \
 		--link mariadb:mariadb \
 		--name nc \
