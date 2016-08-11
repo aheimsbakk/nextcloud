@@ -1,4 +1,8 @@
+# Base it on old stable 
 FROM debian:jessie
+
+# This is me
+MAINTAINER Arnulf Heimsbakk <arnulf.heimsbakk@gmail.com>
 
 # Add Debian contrib and use ftp.uio.no
 # FIXME: not for people outside Norway
@@ -86,7 +90,7 @@ ENV OVERWRITEPROTOCOL ""
 ENV NEXTCLOUD_VERSION 9.0.53
 
 # Set home
-VOLUME /var/www/html
+VOLUME /var/www/nextcloud
 
 # Download and verify Nextcloud, as in https://github.com/docker-library/owncloud/blob/master/9.0/apache/Dockerfile
 RUN wget -O nextcloud.tar.bz2 \
@@ -103,6 +107,9 @@ RUN wget -O nextcloud.tar.bz2 \
 
 # Add entrypoint 
 COPY docker-entrypoint.sh /
+
+# Set workdir
+WORKDIR /var/www/nextcloud
 
 # Run entrypoint
 ENTRYPOINT ["/docker-entrypoint.sh"]

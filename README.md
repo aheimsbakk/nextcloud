@@ -1,7 +1,7 @@
 
 # Supported tags and respective `Dockerfile` links
 
-- `9`, `9.0`, `9.0.53` ([Dockerfile](https://github.com/aheimsbakk/nextcloud/blob/master/Dockerfile))
+- `9`, `9.0`, `9.0.53` ([Dockerfile](https://github.com/aheimsbakk/nextcloud/blob/9.0.53/Dockerfile))
 
 
 # Nextcloud 
