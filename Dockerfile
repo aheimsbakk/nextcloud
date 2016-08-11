@@ -6,7 +6,6 @@ RUN { \
         echo deb http://ftp.uio.no/debian jessie main; \
         echo deb http://ftp.uio.no/debian jessie-updates main; \ 
         echo deb http://security.debian.org jessie/updates main; \
-        echo deb http://ftp.debian.org/debian jessie-backports main; \
     } > /etc/apt/sources.list
 
 # update package cache
@@ -28,7 +27,8 @@ RUN apt-get install -y php5-apcu php5-memcached php5-redis
 RUN apt-get install -y libreoffice
 
 # Install ffmpeg
-RUN apt-get install -y -t jessie-backports ffmpeg
+#RUN apt-get install -y -t jessie-backports ffmpeg
+RUN apt-get install -y libav-tools
 
 # Cleanup
 RUN rm -rf /var/lib/apt/lists/*
