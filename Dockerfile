@@ -107,6 +107,7 @@ RUN wget -O nextcloud.tar.bz2 \
 
 # Add entrypoint 
 COPY docker-entrypoint.sh /
+COPY fix-permissions.sh /
 
 # Set workdir
 WORKDIR /var/www/nextcloud

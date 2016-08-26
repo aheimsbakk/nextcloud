@@ -8,6 +8,7 @@ mkdir -p /var/www/nextcloud
 if [ ! -e "$MC_DIR/version.php" ]; then
     cp -r /usr/src/nextcloud /var/www 
     chown -R www-data $NC_DIR
+    /fix-permissions.sh
 fi
 
 if ! [ -f $CONF_FILE ]
