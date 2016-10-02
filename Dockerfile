@@ -87,7 +87,7 @@ ENV TRUSTED_DOMAINS ""
 ENV OVERWRITEPROTOCOL ""
 
 # Define Nexcloud version
-ENV NEXTCLOUD_VERSION 10.0.0
+ENV NEXTCLOUD_VERSION 10.0.1
 
 # Set home
 VOLUME /var/www/nextcloud
