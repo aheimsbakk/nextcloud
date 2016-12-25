@@ -68,7 +68,7 @@ RUN { \
 
 RUN a2dissite 000-default
 RUN a2ensite nextcloud
-RUN a2enable remoteip
+RUN a2enmod remoteip
 
 # Redirect Apache2 logs
 RUN ln -sf /dev/stdout /var/log/apache2/other_vhosts_access.log
