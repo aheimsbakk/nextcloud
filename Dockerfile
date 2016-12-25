@@ -54,6 +54,7 @@ RUN php5enmod opcache-recommended
 RUN { \
         echo 'Alias / "/var/www/nextcloud/"'; \
         echo 'ServerName localhost'; \
+        echo 'RemoteIPHeader X-Forwarded-For'; \
         echo '<Directory /var/www/nextcloud/>'; \
         echo '  Options +FollowSymlinks'; \
         echo '  AllowOverride All'; \
@@ -67,6 +68,7 @@ RUN { \
 
 RUN a2dissite 000-default
 RUN a2ensite nextcloud
+RUN a2enable remoteip_module
 
 # Redirect Apache2 logs
 RUN ln -sf /dev/stdout /var/log/apache2/other_vhosts_access.log
