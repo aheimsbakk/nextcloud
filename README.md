@@ -112,7 +112,7 @@ Start Nextcloud linked to both Redis and MariaDB with separate `data` and `confi
 		-e REDIS_ENABLED=true \
 		-e OVERWRITEPROTOCOL=https \
 		-v /tmp/nc_data:/var/www/nextcloud/data \
-        -v /tmp/nc_config:/var/www/nextcloud/config \
+		-v /tmp/nc_config:/var/www/nextcloud/config \
 		--link redis:redis \
 		--link mariadb:mariadb \
 		--name nc \
@@ -127,7 +127,7 @@ Start the ssl-proxy. This example uses my ssl-proxy, but use your favourite. If 
 		-p 443:443 \
 		--link nc:http \
 		--name proxy \
-		aheimsbakk/ssl-proxy:3.2
+		aheimsbakk/https-proxy:4
 
 
 ### 5. Start browser
