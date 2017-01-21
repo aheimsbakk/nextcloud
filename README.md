@@ -116,7 +116,7 @@ Start Nextcloud linked to both Redis and MariaDB with separate `data` and `confi
 		--link redis:redis \
 		--link mariadb:mariadb \
 		--name nc \
-		aheimsbakk/nextcloud:9
+		aheimsbakk/nextcloud:11
 
 ### 4. HTTPS proxy
 
