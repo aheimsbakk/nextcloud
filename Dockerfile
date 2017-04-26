@@ -12,30 +12,27 @@ RUN { \
         echo deb http://security.debian.org jessie/updates main; \
     } > /etc/apt/sources.list
 
-# update package cache
-RUN apt-get update
-
-# Reccomended packages from https://docs.nextcloud.com/server/9/admin_manual/installation/source_installation.html
-RUN apt-get install -y wget bzip2 apache2 libapache2-mod-php5 php5-gd php5-json php5-mysql php5-curl php5-intl php5-mcrypt php5-imagick smbclient
-
-# Install database drivers
-RUN apt-get install -y php5-sqlite php5-mysql php5-pgsql
-
-# Auth and storage
-RUN apt-get install -y php5-ldap php5-imap php5-gmp
-
-# For server performance
-RUN apt-get install -y php5-apcu php5-memcached php5-redis
+# Install packages
+RUN apt-get update; apt-get install -y wget \ 
+    # Reccomended packages from https://docs.nextcloud.com/server/9/admin_manual/installation/source_installation.html 
+    bzip2 apache2 libapache2-mod-php5 php5-gd php5-json php5-mysql php5-curl php5-intl php5-mcrypt php5-imagick smbclient \ 
+    # Install database drivers 
+    php5-sqlite php5-mysql php5-pgsql \
+    # Auth and storage 
+    php5-ldap php5-imap php5-gmp \
+    # For server performance 
+    php5-apcu php5-memcached php5-redis \
+    # Install ffmpeg
+    libav-tools
 
 # Installing libreoffice
-RUN apt-get install -y libreoffice
+#RUN apt-get install -y libreoffice
 
 # Install ffmpeg
 #RUN apt-get install -y -t jessie-backports ffmpeg
-RUN apt-get install -y libav-tools
 
 # Cleanup
-RUN rm -rf /var/lib/apt/lists/*
+RUN apt-get clean; rm -rf /var/lib/apt/lists/*
 
 # set recommended PHP.ini settings
 # see https://secure.php.net/manual/en/opcache.installation.php
@@ -89,7 +86,7 @@ ENV TRUSTED_DOMAINS ""
 ENV OVERWRITEPROTOCOL ""
 
 # Define Nexcloud version
-ENV NEXTCLOUD_VERSION 11.0.2
+ENV NEXTCLOUD_VERSION 11.0.3
 
 # Set home
 VOLUME /var/www/nextcloud
