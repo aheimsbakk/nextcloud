@@ -1,7 +1,7 @@
 
 # Supported tags and respective `Dockerfile` links
 
-- `11`, `11.0`, `11.0.2` ([Dockerfile](https://github.com/aheimsbakk/nextcloud/blob/11.0.1/Dockerfile))
+- `11`, `11.0`, `11.0.3` ([Dockerfile](https://github.com/aheimsbakk/nextcloud/blob/11.0.3/Dockerfile))
 - `10`, `10.0`, `10.0.2` ([Dockerfile](https://github.com/aheimsbakk/nextcloud/blob/10.0.2/Dockerfile))
 - `9`, `9.0`, `9.0.53` ([Dockerfile](https://github.com/aheimsbakk/nextcloud/blob/9.0.53/Dockerfile))
 
@@ -10,7 +10,7 @@
 
 From [Wikipedia on OwnCloud][wiki_owncloud]: *April 2016 Karlitschek and many of the top contributors left [OwnCloud][] Inc. Five weeks later they started [Nextcloud][], a fork of OwnCloud.*
 
-This is a drop in replacement for the Owncloud docker. Based on Debian Jessie with [LibreOffice][] installed to be able to use the [document plugin][]. You can also enable locking with [Redis][] using environment variables.
+This is a drop in replacement for the Owncloud docker. Based on Debian Jessie. You can also enable locking with [Redis][] using environment variables.
 
 Memcache with ACPu is enabled by default as showed in Nextcloud [configuring memory caching](https://docs.nextcloud.com/server/9/admin_manual/configuration_server/caching_configuration.html).
 
@@ -139,7 +139,6 @@ Remember to choose MariaDB when configuring the admin user.
 Enjoy.
 
 [document plugin]: https://apps.owncloud.com/content/show.php/Documents?content=168711
-[LibreOffice]: https://www.libreoffice.org
 [Redis]: https://redis.io
 [wiki_owncloud]: https://en.wikipedia.org/wiki/OwnCloud
 [OwnCloud]: https://owncloud.com
