@@ -53,6 +53,9 @@ RUN apk add unzip autoconf build-base php5-dev; \
     rm -rf /tmp/*; \
     apk del unzip autoconf build-base php5-dev
 
+RUN echo "extension=redis.so" > /etc/php5/conf.d/redis.ini
+
+
 # set recommended PHP.ini settings
 # see https://secure.php.net/manual/en/opcache.installation.php
 RUN { \
