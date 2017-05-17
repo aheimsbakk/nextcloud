@@ -5,7 +5,7 @@ FROM alpine
 MAINTAINER Arnulf Heimsbakk <arnulf.heimsbakk@gmail.com>
 
 # REDIS
-ENV PHP_REDIS_VER=3.1.2
+ENV PHP_REDIS_VER 3.1.2  
 ENV REDIS_ENABLED ""
 ENV REDIS_SERVER redis
 ENV REDIS_PORT 6379
@@ -84,11 +84,12 @@ RUN { \
         echo '</Directory>'; \
     } > /etc/apache2/conf.d/nextcloud.conf
 
-# Fix apache2, and remove default apache vserver
+# Fix apache2, and remove default apache vserver + increase php memory limit
 RUN mkdir /run/apache2; \
     sed -i '/remoteip_module/s/#//' /etc/apache2/httpd.conf; \
     sed -i '/^DocumentRoot/d' /etc/apache2/httpd.conf; \
-    sed -i '/<Directory ..var.www.*/,/<.Directory.*/d' /etc/apache2/httpd.conf 
+    sed -i '/<Directory ..var.www.*/,/<.Directory.*/d' /etc/apache2/httpd.conf; \
+    sed -i '/^memory_limit/s/128/512/' /etc/php5/php.ini
 
 # Redirect Apache2 logs
 RUN ln -sf /dev/stdout /var/log/apache2/access.log
