@@ -1,6 +1,7 @@
 
 # Supported tags and respective `Dockerfile` links
 
+- `11-alpine`, `11.0-alpine`, `11.0.3-alpine` ([Dockerfile](https://github.com/aheimsbakk/nextcloud/blob/11.0.3-alpine/Dockerfile))
 - `11`, `11.0`, `11.0.3` ([Dockerfile](https://github.com/aheimsbakk/nextcloud/blob/11.0.3/Dockerfile))
 - `10`, `10.0`, `10.0.2` ([Dockerfile](https://github.com/aheimsbakk/nextcloud/blob/10.0.2/Dockerfile))
 - `9`, `9.0`, `9.0.53` ([Dockerfile](https://github.com/aheimsbakk/nextcloud/blob/9.0.53/Dockerfile))
