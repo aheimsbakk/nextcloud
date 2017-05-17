@@ -61,11 +61,12 @@ RUN echo "extension=redis.so" > /etc/php5/conf.d/redis.ini
 RUN { \
         echo 'opcache.memory_consumption=128'; \
         echo 'opcache.interned_strings_buffer=8'; \
-        echo 'opcache.max_accelerated_files=4000'; \
-        echo 'opcache.revalidate_freq=60'; \
+        echo 'opcache.max_accelerated_files=10000'; \
+        echo 'opcache.revalidate_freq=1'; \
         echo 'opcache.fast_shutdown=1'; \
+        echo 'opcache.save_comments=1'; \
         echo 'opcache.enable_cli=1'; \
-    } > /etc/php5/conf.d/opcache.ini
+    } >> /etc/php5/conf.d/opcache.ini
 
 ## Nextcloud apache config
 RUN { \
