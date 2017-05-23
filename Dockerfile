@@ -97,7 +97,7 @@ RUN ln -sf /dev/stdout /var/log/apache2/access.log
 RUN ln -sf /dev/stderr /var/log/apache2/error.log
 
 # Define Nexcloud version
-ENV NEXTCLOUD_VERSION 11.0.3
+ENV NEXTCLOUD_VERSION 12.0.0
 
 # Download and verify Nextcloud, as in https://github.com/docker-library/owncloud/blob/master/9.0/apache/Dockerfile
 RUN wget -O nextcloud.tar.bz2 \
