@@ -10,8 +10,8 @@ mkdir -p $ocpath/assets
 mkdir -p $ocpath/updater
 
 printf "chmod Files and Directories\n"
-find ${ocpath} -type f -print0 | xargs -0 chmod 0640
-find ${ocpath} -type d -print0 | xargs -0 chmod 0750
+find ${ocpath} -type f -print0 -maxdepth 1 | xargs -0 chmod 0640
+find ${ocpath} -type d -print0 -maxdepth 1 | xargs -0 chmod 0750
 
 printf "chown Directories\n"
 chown ${rootuser}:${htgroup} ${ocpath}/.
