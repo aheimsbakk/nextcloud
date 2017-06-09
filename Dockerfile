@@ -43,20 +43,8 @@ RUN apk update; apk add wget \
     # Gnupg and bash
     gnupg bash \
     # Extra packages for occ command
-    php7-posix php7-pdo php7-openssl php7-pcntl php7-zlib php7-ctype php7-xml php7-xmlreader php7-dom php7-zip php7-iconv
-
-# Build php5-redis
-#RUN apk add unzip autoconf build-base php5-dev; \
-#    wget -P /tmp https://github.com/phpredis/phpredis/archive/3.1.2.zip; \
-#    cd /tmp; unzip $PHP_REDIS_VER.zip; \
-#    cd /tmp/phpredis-$PHP_REDIS_VER; phpize; \
-#    ./configure; \
-#    make && make install && make test; \
-#    rm -rf /tmp/*; \
-#    apk del unzip autoconf build-base php5-dev
-#
-#RUN echo "extension=redis.so" > /etc/php5/conf.d/redis.ini
-
+    php7-posix php7-pdo php7-openssl php7-pcntl php7-zlib php7-ctype \ 
+    php7-xml php7-xmlreader php7-dom php7-zip php7-iconv
 
 # set recommended PHP.ini settings
 # see https://secure.php.net/manual/en/opcache.installation.php
@@ -110,6 +98,7 @@ RUN wget -O nextcloud.tar.bz2 \
 # gpg key from https://nextcloud.com/nextcloud.asc
     && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 28806A878AE423A28372792ED75899B9A724937A \
     && gpg --batch --verify nextcloud.tar.bz2.asc nextcloud.tar.bz2 \
+    && sync \
     && rm -r "$GNUPGHOME" nextcloud.tar.bz2.asc  \
     && mkdir /usr/src \
     && tar -xjf nextcloud.tar.bz2 -C /usr/src/ \
