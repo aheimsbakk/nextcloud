@@ -1,5 +1,5 @@
 # Base it on old stable 
-FROM alpine
+FROM alpine:3.6
 
 # This is me
 MAINTAINER Arnulf Heimsbakk <arnulf.heimsbakk@gmail.com>
