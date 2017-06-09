@@ -27,33 +27,33 @@ COPY fix-permissions.sh /
 WORKDIR /var/www/nextcloud
 
 # Install packages
-RUN apk update; apk add -y wget \ 
+RUN apk update; apk add wget \ 
     # Reccomended packages from https://docs.nextcloud.com/server/9/admin_manual/installation/source_installation.html 
-    bzip2 apache2 php5-apache2 php5-gd php5-json php5-mysql php5-curl php5-intl php5-mcrypt php5-imagick samba-client \
+    bzip2 apache2 php7-apache2 php7-gd php7-json php7-curl php7-intl php7-mcrypt php7-imagick samba-client php7-xmlwriter php7-mbstring php7-simplexml \
     # Install database drivers 
-    php5-sqlite3 php5-pdo_sqlite php5-mysql php5-pdo_mysql php5-pgsql php5-pdo_pgsql \
+    php7-sqlite3 php7-pdo_sqlite php7-pdo_mysql php7-pgsql php7-pdo_pgsql \
     # Auth and storage 
-    php5-ldap php5-imap php5-gmp \
+    php7-ldap php7-imap php7-gmp \
     # For server performance 
-    php5-apcu php5-memcache php5-opcache \
+    php7-apcu php7-memcached php7-redis php7-opcache \
     # Install ffmpeg
     ffmpeg \
     # Gnupg and bash
     gnupg bash \
     # Extra packages for occ command
-    php5-posix php5-pdo php5-openssl php5-pcntl php5-zlib php5-ctype php5-xml php5-xmlreader php5-dom php5-zip php5-iconv
+    php7-posix php7-pdo php7-openssl php7-pcntl php7-zlib php7-ctype php7-xml php7-xmlreader php7-dom php7-zip php7-iconv
 
 # Build php5-redis
-RUN apk add unzip autoconf build-base php5-dev; \
-    wget -P /tmp https://github.com/phpredis/phpredis/archive/3.1.2.zip; \
-    cd /tmp; unzip $PHP_REDIS_VER.zip; \
-    cd /tmp/phpredis-$PHP_REDIS_VER; phpize; \
-    ./configure; \
-    make && make install && make test; \
-    rm -rf /tmp/*; \
-    apk del unzip autoconf build-base php5-dev
-
-RUN echo "extension=redis.so" > /etc/php5/conf.d/redis.ini
+#RUN apk add unzip autoconf build-base php5-dev; \
+#    wget -P /tmp https://github.com/phpredis/phpredis/archive/3.1.2.zip; \
+#    cd /tmp; unzip $PHP_REDIS_VER.zip; \
+#    cd /tmp/phpredis-$PHP_REDIS_VER; phpize; \
+#    ./configure; \
+#    make && make install && make test; \
+#    rm -rf /tmp/*; \
+#    apk del unzip autoconf build-base php5-dev
+#
+#RUN echo "extension=redis.so" > /etc/php5/conf.d/redis.ini
 
 
 # set recommended PHP.ini settings
@@ -66,7 +66,7 @@ RUN { \
         echo 'opcache.fast_shutdown=1'; \
         echo 'opcache.save_comments=1'; \
         echo 'opcache.enable_cli=1'; \
-    } >> /etc/php5/conf.d/opcache.ini
+    } >> /etc/php7/conf.d/00_opcache.ini
 
 ## Nextcloud apache config
 RUN { \
@@ -90,7 +90,7 @@ RUN mkdir /run/apache2; \
     sed -i '/remoteip_module/s/#//' /etc/apache2/httpd.conf; \
     sed -i '/^DocumentRoot/d' /etc/apache2/httpd.conf; \
     sed -i '/<Directory ..var.www.*/,/<.Directory.*/d' /etc/apache2/httpd.conf; \
-    sed -i '/^memory_limit/s/128/512/' /etc/php5/php.ini
+    sed -i '/^memory_limit/s/128/256/' /etc/php7/php.ini
 
 # Redirect Apache2 logs
 RUN ln -sf /dev/stdout /var/log/apache2/access.log
