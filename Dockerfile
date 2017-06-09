@@ -29,7 +29,7 @@ WORKDIR /var/www/nextcloud
 # Install packages
 RUN apk update; apk add wget \ 
     # Reccomended packages from https://docs.nextcloud.com/server/9/admin_manual/installation/source_installation.html 
-    bzip2 apache2 php7-apache2 php7-gd php7-json php7-curl php7-intl php7-mcrypt php7-imagick samba-client php7-xmlwriter php7-mbstring php7-simplexml \
+    bzip2 apache2 php7-apache2 php7-gd php7-json php7-curl php7-intl php7-mcrypt php7-imagick samba-client php7-xmlwriter php7-mbstring php7-simplexml php7-fileinfo \
     # Install database drivers 
     php7-sqlite3 php7-pdo_sqlite php7-pdo_mysql php7-pgsql php7-pdo_pgsql \
     # Auth and storage 
