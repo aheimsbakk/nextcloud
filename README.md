@@ -1,6 +1,6 @@
 # Supported tags and respective `Dockerfile` links
 
-- `12-alpine`, `12.0-alpine`, `12.0.3-alpine` ([Dockerfile](https://github.com/aheimsbakk/nextcloud/blob/12.0.3-alpine/Dockerfile))
+- `12-alpine`, `12.0-alpine`, `12.0.4-alpine` ([Dockerfile](https://github.com/aheimsbakk/nextcloud/blob/12.0.3-alpine/Dockerfile))
 
 Old  removed images
 
